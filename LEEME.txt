@@ -1,0 +1,27 @@
+CONVERTIDOR DE OPTION FILES  WE9 <-> WE9LE (PC)
+
+USO
+1. Arrastra tu option file (KONAMI-WIN32WE9UOPT o KONAMI-WIN32WE9KOPT) sobre
+   arrastrar_aqui.bat  (o sobre WE9_WE9LE_convertidor.exe si lo compilas).
+2. Junto al archivo aparece una carpeta "convertido_<nombre>" con dos subcarpetas:
+     WE9\KONAMI-WIN32WE9UOPT     -> para WE9 regular
+     WE9LE\KONAMI-WIN32WE9KOPT   -> para WE9LE
+   La que coincide con tu archivo de entrada es una copia sin cambios.
+3. Copia el archivo que corresponda a la carpeta de saves del juego. Haz copia de seguridad antes.
+
+PARA OBTENER EL .EXE PORTABLE
+Doble clic en compilar_exe.bat (necesita Python 3 instalado e internet para descargar PyInstaller).
+El .exe queda en la carpeta "dist" y no necesita instalacion. Algunos antivirus marcan los .exe
+creados con PyInstaller; si pasa, es un falso positivo y puedes usar arrastrar_aqui.bat en su lugar.
+
+QUE HACE
+Solo reemplaza los primeros 9500 bytes (cabecera y ajustes del sistema) por los de la otra version,
+y comprueba los checksums de los 10 bloques antes y despues. Jugadores, equipos, plantillas y kits
+no se tocan. Nunca modifica el archivo de entrada.
+
+LIMITES
+- WE9 -> WE9LE: la conversion es identica byte a byte al archivo que ya probaste en el juego.
+- WE9LE -> WE9: verificada en estructura y checksums, pero no probada todavia en el juego.
+- Los ajustes del sistema del archivo convertido (opciones, etc.) pasan a ser los de las plantillas
+  incluidas (las de tus propios archivos de WE9 y WE9LE).
+- Rechaza archivos que no midan 1.250.304 bytes o con checksums invalidos (usa --forzar para saltarlo).
